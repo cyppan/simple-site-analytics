@@ -1,0 +1,61 @@
+service: simple-site-analytics
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: eu-west-3
+  lambdaHashingVersion: '20201221'
+  memorySize: 128
+  httpApi:
+    cors:
+      allowedOrigins:
+        - https://www.loop-code-recur.io
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:UpdateItem'
+          Resource:
+            Fn::Join:
+              - ''
+              - - 'arn:aws:dynamodb:eu-west-3:485526944952:table/SiteStatistics'
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:Query'
+          Resource:
+            Fn::Join:
+              - ''
+              - - 'arn:aws:dynamodb:eu-west-3:485526944952:table/SiteStatistics'
+
+functions:
+  track:
+    handler: index.trackHandler
+    events:
+      - httpApi:
+          path: /track
+          method: post
+  dashboard:
+    handler: index.dashboardHandler
+    events:
+      - httpApi:
+          path: /dashboard
+          method: get
+
+resources: # CloudFormation template syntax
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: SiteStatistics
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: day
+            AttributeType: S
+          - AttributeName: url
+            AttributeType: S
+        KeySchema:
+          - AttributeName: day
+            KeyType: HASH
+          - AttributeName: url
+            KeyType: RANGE

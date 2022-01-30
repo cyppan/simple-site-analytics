@@ -1,0 +1,15 @@
+# package directories
+node_modules
+jspm_packages
+
+# IDEs
+.calva
+.clj-kondo
+.idea
+.lsp
+
+# REPL
+.nrepl-port
+
+# Serverless
+.serverless
