@@ -16,12 +16,12 @@ Everything is managed through Serverless, see the serverless.yml file.
 
 ## Features
 
+<img width="1728" alt="Capture d’écran 2022-01-30 à 18 15 42" src="https://user-images.githubusercontent.com/1446201/151723509-4b42d855-72bb-4fb3-b771-16c90be3edb4.png">
+
 Allow to count and visualize your site URLs views by day. The tracker is highly resilient and scalable thanks to AWS, find more info about costs in the "Deployment" part (should be free for small websites in the free tier period, very cheap after that).
 
 There is a basic support for a "utm_source" query params to add in your url when you share them (ex: https://mysite.com?utm_source=twitter).    
 Note that with the current code, only the values "twitter" and "slack" will be shown in the dashboard (but others will still be counted in the Dynamo table).
-
-TODO: insert screenshot
 
 ## Configuration
 
