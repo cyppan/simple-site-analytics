@@ -2,7 +2,7 @@
 
 A simple Site analytics API with Clojure nbb running on AWS Lambda and API Gateway using [the Serverless Framework](https://www.serverless.com/framework/docs).
 
-See the following article for more details: 
+See the following article for more details: https://loop-code-recur.io/simple-site-analytics-with-serverless-clojure/
 
 The Clojurescript code is interpreted at runtime on node.js directly without any compilation step thanks to [nbb](https://github.com/babashka/nbb) (at the cost of more latency).
 
