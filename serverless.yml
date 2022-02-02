@@ -48,7 +48,6 @@ resources: # CloudFormation template syntax
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: SiteStatistics
-        BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: day
             AttributeType: S
@@ -59,3 +58,6 @@ resources: # CloudFormation template syntax
             KeyType: HASH
           - AttributeName: url
             KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
